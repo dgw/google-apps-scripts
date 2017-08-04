@@ -35,7 +35,22 @@ function didntEat24() {
   }
 }
 
+function oldegg() {
+  var cutoff = new Date();
+  cutoff.setUTCHours(8, 0, 0, 0);
+  cutoff.setUTCDate(cutoff.getUTCDate() - 2);
+  Logger.log("Searching for Newegg deal emails that are unread or in the inbox and more than two days old...");
+  var threads = GmailApp.search('from:promo@email.newegg.com (is:unread|in:inbox) older_than:2d');
+  if (threads.length) {
+    Logger.log("Marking read and archiving found Newegg threads older than " + cutoff.toISOString() + ")");
+    threads.forEach(function(element) {markReadAndArchiveOlderThanDate(element, cutoff);});
+  } else {
+    Logger.log("No Newegg threads found; nothing to do.");
+  }
+}
+
 function doCleanup() {
   goAwayBookBub();
   didntEat24();
+  oldegg();
 }
