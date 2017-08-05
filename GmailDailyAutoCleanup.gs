@@ -3,8 +3,6 @@ function markReadAndArchiveOlderThanDate(thread, cutoff) {
     Logger.log("Marking read and archiving thread " + thread.getId());
     thread.markRead();
     thread.moveToArchive();
-  } else {
-    Logger.log("Skipping thread " thread.getID() + "; insufficient thread age.");
   }
 }
 
@@ -53,4 +51,5 @@ function doCleanup() {
   goAwayBookBub();
   didntEat24();
   oldegg();
+  Logger.log("Cleanup finished.");
 }
