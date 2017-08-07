@@ -24,7 +24,7 @@ function didntEat24() {
   cutoff.setUTCHours(8, 0, 0, 0);
   cutoff.setUTCDate(cutoff.getUTCDate() - cutoff.getUTCDay());
   Logger.log("Searching for weekend coupon messages from Eat24 that are unread or in the inbox...");
-  var threads = GmailApp.search('from:eat24hrs.com subject:"Your Weekend Coupon" (is:unread|in:inbox)');
+  var threads = GmailApp.search('from:eat24hrs.com subject:"Your Weekend Coupon" (is:unread|in:inbox) older_than:2d');
   if (threads.length) {
     Logger.log("Marking read and archiving found Eat24 coupon threads older than last Sunday (" + cutoff.toISOString() + ")");
     threads.forEach(function(element) {markReadAndArchiveOlderThanDate(element, cutoff);});
