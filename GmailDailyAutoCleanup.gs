@@ -38,7 +38,7 @@ function oldegg() {
   cutoff.setUTCHours(8, 0, 0, 0);
   cutoff.setUTCDate(cutoff.getUTCDate() - 2);
   Logger.log("Searching for Newegg deal emails that are unread or in the inbox and more than two days old...");
-  var threads = GmailApp.search('from:promo@email.newegg.com (is:unread|in:inbox) older_than:2d');
+  var threads = GmailApp.search('from:promo@promo.newegg.com (is:unread|in:inbox) older_than:2d');
   if (threads.length) {
     Logger.log("Marking read and archiving found Newegg threads older than " + cutoff.toISOString() + ")");
     threads.forEach(function(element) {markReadAndArchiveOlderThanDate(element, cutoff);});
